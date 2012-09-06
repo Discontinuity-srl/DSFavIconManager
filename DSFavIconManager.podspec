@@ -4,9 +4,11 @@ Pod::Spec.new do |s|
   s.summary      = "DSFavIconManager is a complete solution for displaying favicons."
   s.homepage     = "https://github.com/irrationalfab/DSFavIconManager"
   s.author       = { 'Fabio A. Pelosin' => 'fabio@discontinuity.it' }
-  s.source       = { :git => "https://github.com/irrationalfab/DSFavIconManager", :tag => "0.9.0" }
+  s.source       = { :git => "https://github.com/irrationalfab/DSFavIconManager.git", :tag => "0.9.0" }
   s.source_files = 'Classes'
-  s.dependency 'AFNetworking'
+  s.requires_arc = true
+  s.platform     = :ios
+  s.license      = "MIT"
   s.description  = <<-DESC
     DSFavIconManager is a complete solution for displaying favicons.
 
@@ -18,4 +20,6 @@ Pod::Spec.new do |s|
     - It doesn't uses a full blown HTML parser.
     - Optional fall-back to apple touch icons for retina displays.C
   DESC
+
+  s.dependency 'AFNetworking'
 end
