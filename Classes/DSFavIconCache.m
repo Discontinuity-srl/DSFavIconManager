@@ -8,10 +8,43 @@
 
 #import "DSFavIconCache.h"
 
+NSData *UINSImagePNGRepresentation(UINSImage *image);
+
+NSData *UINSImagePNGRepresentation(UINSImage *image) {
+#if TARGET_OS_IPHONE
+    return UIImagePNGRepresentation(image);
+
+#else
+    CGImageSourceRef sourceRef = CGImageSourceCreateWithData((__bridge CFDataRef)[image TIFFRepresentation], NULL);
+    CGImageRef imageRef =  CGImageSourceCreateImageAtIndex(sourceRef, 0, NULL);
+    CGImageRef copyImageRef = CGImageCreateCopyWithColorSpace (imageRef, CGColorSpaceCreateDeviceRGB());
+    if (copyImageRef == NULL) {
+        // The color space of the image likely to be indexed.
+        CGRect imageRect  = CGRectMake(0, 0, image.size.width, image.size.height);
+        NSUInteger width  = CGImageGetWidth(imageRef);
+        NSUInteger height = CGImageGetHeight(imageRef);
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+        CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, width * 4, colorSpace, kCGImageAlphaPremultipliedLast);
+        CGContextDrawImage(context, imageRect, imageRef);
+        copyImageRef = CGBitmapContextCreateImage(context);
+    }
+
+    NSMutableData *data = [NSMutableData new];
+    CGImageDestinationRef destination = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)(data), kUTTypePNG, 1, NULL);
+    CGImageDestinationAddImage(destination, copyImageRef, nil);
+    CGImageDestinationFinalize(destination);
+    
+    CFRelease(sourceRef);
+    CGImageRelease(imageRef);
+    CGImageRelease(copyImageRef);
+    return data;
+#endif
+}
+
+
 @implementation DSFavIconCache {
   dispatch_queue_t _queue;
   NSFileManager *_fileManager;
-  NSString *_cacheDirectory;
 }
 
 + (DSFavIconCache *)sharedCache {
@@ -23,8 +56,7 @@
   return sharedCache;
 }
 
-- (id)init
-{
+- (id)init {
   self = [super init];
   if (self) {
     _queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
@@ -46,12 +78,12 @@
   [super removeAllObjects];
 }
 
-- (UIImage *)imageForKey:(NSString *)key {
-    UIImage *image = [self objectForKey:key];
+- (UINSImage *)imageForKey:(NSString *)key {
+    UINSImage *image = [self objectForKey:key];
 
     if (!image) {
       NSString *path = [self pathForImage:image key:key];
-      image = [UIImage imageWithContentsOfFile:path];
+      image = [[UINSImage alloc] initWithContentsOfFile:path];
       if (image) {
         [self setObject:image forKey:key];
       }
@@ -59,7 +91,7 @@
     return image;
 }
 
-- (void)setImage:(UIImage *)image forKey:(NSString *)key {
+- (void)setImage:(UINSImage *)image forKey:(NSString *)key {
     if (!image || !key) {
         return;
     }
@@ -68,17 +100,23 @@
 
     dispatch_async(_queue, ^{
         NSString *path = [self pathForImage:image key:key];
-        [UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
+        NSLog(@"%@", path);
+        NSData *imageData = UINSImagePNGRepresentation(image);
+        if (imageData) {
+            [imageData writeToFile:path atomically:NO];
+        }
     });
 }
 
 #pragma mark - Private Methods
 
-- (NSString *)pathForImage:(UIImage*)image key:(NSString *)key {
+- (NSString *)pathForImage:(UINSImage*)image key:(NSString *)key {
   NSString *path = key;
+#if TARGET_OS_IPHONE
   if (image.scale == 2.0f) {
     path = [key stringByAppendingString:@"@2x"];
   }
+#endif
   path = [key stringByAppendingString:@".png"];
   return [_cacheDirectory stringByAppendingPathComponent:path];
 }

@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UINSImage.h"
 
 @interface DSFavIconCache : NSCache
 
+@property (nonatomic, retain) NSString *cacheDirectory;
+
 + (DSFavIconCache *)sharedCache;
-- (UIImage *)imageForKey:(NSString *)key;
-- (void)setImage:(UIImage *)image forKey:(NSString *)key;
+- (UINSImage *)imageForKey:(NSString *)key;
+- (void)setImage:(UINSImage *)image forKey:(NSString *)key;
 - (void)removeAllObjects;
 
 @end

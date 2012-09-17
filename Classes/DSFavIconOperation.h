@@ -6,11 +6,14 @@
 //  Copyright (c) 2012 Discontinuity s.r.l. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UINSImage.h"
 
-typedef void (^DSFavIconOperationCompletionBlock)(UIImage *icon);
-typedef BOOL (^DSFavIconOperationAcceptanceBlock)(UIImage *icon);
+typedef void (^DSFavIconOperationCompletionBlock)(UINSImage *icon);
+typedef BOOL (^DSFavIconOperationAcceptanceBlock)(UINSImage *icon);
 typedef BOOL (^DSFavIconOperationPreflightBlock)(NSURL *url);
+
+extern NSString *const kDSFavIconOperationDidStartNetworkActivity;
+extern NSString *const kDSFavIconOperationDidEndNetworkActivity;
 
 @interface DSFavIconOperation : NSOperation
 

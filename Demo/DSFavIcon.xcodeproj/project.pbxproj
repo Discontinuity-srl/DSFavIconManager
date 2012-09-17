@@ -10,6 +10,20 @@
 		DEE1D01B0DF14AFBAAB7C93C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F2BABFB6B3B64445BC1588A3 /* libPods.a */; };
 		E538CEBD15F7B70500F78345 /* DSFavIconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E538CEBC15F7B70500F78345 /* DSFavIconManager.m */; };
 		E538CED115F7E9FD00F78345 /* DSFavIconOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E538CED015F7E9FD00F78345 /* DSFavIconOperation.m */; };
+		E548616316076869009E1A47 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E548616216076869009E1A47 /* Default-568h@2x.png */; };
+		E548617616076E65009E1A47 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E548617516076E65009E1A47 /* Cocoa.framework */; };
+		E548618016076E65009E1A47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E548617E16076E65009E1A47 /* InfoPlist.strings */; };
+		E548618216076E65009E1A47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E548618116076E65009E1A47 /* main.m */; };
+		E548618616076E65009E1A47 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E548618416076E65009E1A47 /* Credits.rtf */; };
+		E548618916076E65009E1A47 /* DSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E548618816076E65009E1A47 /* DSAppDelegate.m */; };
+		E548618C16076E65009E1A47 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = E548618A16076E65009E1A47 /* MainMenu.xib */; };
+		E548619016076E81009E1A47 /* DSFavIconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E538CEBC15F7B70500F78345 /* DSFavIconManager.m */; };
+		E548619116076E81009E1A47 /* DSFavIconOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E538CED015F7E9FD00F78345 /* DSFavIconOperation.m */; };
+		E548619216076E81009E1A47 /* DSFavIconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CE469515F815B400FEEC4D /* DSFavIconCache.m */; };
+		E548619516077004009E1A47 /* DSURLDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E548619416077004009E1A47 /* DSURLDataSource.m */; };
+		E548619616077004009E1A47 /* DSURLDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E548619416077004009E1A47 /* DSURLDataSource.m */; };
+		E5486197160774FF009E1A47 /* favicon.png in Resources */ = {isa = PBXBuildFile; fileRef = E59C481215F8332D007CA777 /* favicon.png */; };
+		E5486198160774FF009E1A47 /* favicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E59C481315F8332D007CA777 /* favicon@2x.png */; };
 		E59C481415F8332D007CA777 /* favicon.png in Resources */ = {isa = PBXBuildFile; fileRef = E59C481215F8332D007CA777 /* favicon.png */; };
 		E59C481515F8332D007CA777 /* favicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E59C481315F8332D007CA777 /* favicon@2x.png */; };
 		E5CE469615F815B400FEEC4D /* DSFavIconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = E5CE469515F815B400FEEC4D /* DSFavIconCache.m */; };
@@ -29,10 +43,27 @@
 		E538CEBC15F7B70500F78345 /* DSFavIconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFavIconManager.m; sourceTree = "<group>"; };
 		E538CECF15F7E9FD00F78345 /* DSFavIconOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFavIconOperation.h; sourceTree = "<group>"; };
 		E538CED015F7E9FD00F78345 /* DSFavIconOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFavIconOperation.m; sourceTree = "<group>"; };
+		E548616216076869009E1A47 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E548617316076E65009E1A47 /* MacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E548617516076E65009E1A47 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		E548617816076E65009E1A47 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		E548617916076E65009E1A47 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E548617A16076E65009E1A47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E548617D16076E65009E1A47 /* MacDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacDemo-Info.plist"; sourceTree = "<group>"; };
+		E548617F16076E65009E1A47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E548618116076E65009E1A47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E548618316076E65009E1A47 /* MacDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacDemo-Prefix.pch"; sourceTree = "<group>"; };
+		E548618516076E65009E1A47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		E548618716076E65009E1A47 /* DSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSAppDelegate.h; sourceTree = "<group>"; };
+		E548618816076E65009E1A47 /* DSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DSAppDelegate.m; sourceTree = "<group>"; };
+		E548618B16076E65009E1A47 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E548619316077004009E1A47 /* DSURLDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSURLDataSource.h; sourceTree = "<group>"; };
+		E548619416077004009E1A47 /* DSURLDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSURLDataSource.m; sourceTree = "<group>"; };
 		E59C481215F8332D007CA777 /* favicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favicon.png; sourceTree = "<group>"; };
 		E59C481315F8332D007CA777 /* favicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favicon@2x.png"; sourceTree = "<group>"; };
 		E5CE469415F815B300FEEC4D /* DSFavIconCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFavIconCache.h; sourceTree = "<group>"; };
 		E5CE469515F815B400FEEC4D /* DSFavIconCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFavIconCache.m; sourceTree = "<group>"; };
+		E5D36EE81607606500FB56A8 /* UINSImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UINSImage.h; sourceTree = "<group>"; };
 		E5F0969E15F647930054838B /* DSFavIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DSFavIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F096A215F647930054838B /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E5F096A415F647930054838B /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,6 +81,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E548617016076E65009E1A47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E548617616076E65009E1A47 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5F0969B15F647930054838B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,9 +112,43 @@
 				E538CED015F7E9FD00F78345 /* DSFavIconOperation.m */,
 				E5CE469415F815B300FEEC4D /* DSFavIconCache.h */,
 				E5CE469515F815B400FEEC4D /* DSFavIconCache.m */,
+				E5D36EE81607606500FB56A8 /* UINSImage.h */,
 			);
 			name = Classes;
 			path = ../Classes;
+			sourceTree = "<group>";
+		};
+		E548617716076E65009E1A47 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E548617816076E65009E1A47 /* AppKit.framework */,
+				E548617916076E65009E1A47 /* CoreData.framework */,
+				E548617A16076E65009E1A47 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		E548617B16076E65009E1A47 /* MacDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E548618716076E65009E1A47 /* DSAppDelegate.h */,
+				E548618816076E65009E1A47 /* DSAppDelegate.m */,
+				E548618A16076E65009E1A47 /* MainMenu.xib */,
+				E548617C16076E65009E1A47 /* Supporting Files */,
+			);
+			path = MacDemo;
+			sourceTree = "<group>";
+		};
+		E548617C16076E65009E1A47 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E548617D16076E65009E1A47 /* MacDemo-Info.plist */,
+				E548617E16076E65009E1A47 /* InfoPlist.strings */,
+				E548618116076E65009E1A47 /* main.m */,
+				E548618316076E65009E1A47 /* MacDemo-Prefix.pch */,
+				E548618416076E65009E1A47 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E59C481115F8332D007CA777 /* Resources */ = {
@@ -91,8 +164,10 @@
 		E5F0969315F647930054838B = {
 			isa = PBXGroup;
 			children = (
+				E548616216076869009E1A47 /* Default-568h@2x.png */,
 				E538CEBA15F7B70500F78345 /* Classes */,
 				E5F096A815F647930054838B /* DSFavIconManagerDemo */,
+				E548617B16076E65009E1A47 /* MacDemo */,
 				E5F096A115F647930054838B /* Frameworks */,
 				E5F0969F15F647930054838B /* Products */,
 				7223BBF965FD48FC9A563BF1 /* Pods.xcconfig */,
@@ -103,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				E5F0969E15F647930054838B /* DSFavIcon.app */,
+				E548617316076E65009E1A47 /* MacDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +190,8 @@
 				E5F096A415F647930054838B /* Foundation.framework */,
 				E5F096A615F647930054838B /* CoreGraphics.framework */,
 				F2BABFB6B3B64445BC1588A3 /* libPods.a */,
+				E548617516076E65009E1A47 /* Cocoa.framework */,
+				E548617716076E65009E1A47 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,6 +204,8 @@
 				E5F096B415F647930054838B /* MainStoryboard.storyboard */,
 				E5F096B715F647930054838B /* DSMasterViewController.h */,
 				E5F096B815F647930054838B /* DSMasterViewController.m */,
+				E548619316077004009E1A47 /* DSURLDataSource.h */,
+				E548619416077004009E1A47 /* DSURLDataSource.m */,
 				E59C481115F8332D007CA777 /* Resources */,
 				E5F096A915F647930054838B /* Supporting Files */,
 			);
@@ -147,6 +227,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E548617216076E65009E1A47 /* MacDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E548618D16076E65009E1A47 /* Build configuration list for PBXNativeTarget "MacDemo" */;
+			buildPhases = (
+				E548616F16076E65009E1A47 /* Sources */,
+				E548617016076E65009E1A47 /* Frameworks */,
+				E548617116076E65009E1A47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacDemo;
+			productName = MacDemo;
+			productReference = E548617316076E65009E1A47 /* MacDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E5F0969D15F647930054838B /* DSFavIcon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E5F096BF15F647930054838B /* Build configuration list for PBXNativeTarget "DSFavIcon" */;
@@ -188,11 +285,24 @@
 			projectRoot = "";
 			targets = (
 				E5F0969D15F647930054838B /* DSFavIcon */,
+				E548617216076E65009E1A47 /* MacDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E548617116076E65009E1A47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E548618016076E65009E1A47 /* InfoPlist.strings in Resources */,
+				E548618616076E65009E1A47 /* Credits.rtf in Resources */,
+				E548618C16076E65009E1A47 /* MainMenu.xib in Resources */,
+				E5486197160774FF009E1A47 /* favicon.png in Resources */,
+				E5486198160774FF009E1A47 /* favicon@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5F0969C15F647930054838B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,6 +311,7 @@
 				E5F096B615F647930054838B /* MainStoryboard.storyboard in Resources */,
 				E59C481415F8332D007CA777 /* favicon.png in Resources */,
 				E59C481515F8332D007CA777 /* favicon@2x.png in Resources */,
+				E548616316076869009E1A47 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +335,19 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E548616F16076E65009E1A47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E548618216076E65009E1A47 /* main.m in Sources */,
+				E548618916076E65009E1A47 /* DSAppDelegate.m in Sources */,
+				E548619016076E81009E1A47 /* DSFavIconManager.m in Sources */,
+				E548619116076E81009E1A47 /* DSFavIconOperation.m in Sources */,
+				E548619216076E81009E1A47 /* DSFavIconCache.m in Sources */,
+				E548619616077004009E1A47 /* DSURLDataSource.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E5F0969A15F647930054838B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,12 +358,37 @@
 				E538CEBD15F7B70500F78345 /* DSFavIconManager.m in Sources */,
 				E538CED115F7E9FD00F78345 /* DSFavIconOperation.m in Sources */,
 				E5CE469615F815B400FEEC4D /* DSFavIconCache.m in Sources */,
+				E548619516077004009E1A47 /* DSURLDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		E548617E16076E65009E1A47 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E548617F16076E65009E1A47 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E548618416076E65009E1A47 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E548618516076E65009E1A47 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		E548618A16076E65009E1A47 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E548618B16076E65009E1A47 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		E5F096AB15F647930054838B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -259,6 +408,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E548618E16076E65009E1A47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacDemo/MacDemo-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "MacDemo/MacDemo-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E548618F16076E65009E1A47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacDemo/MacDemo-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "MacDemo/MacDemo-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		E5F096BD15F647930054838B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -335,6 +532,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E548618D16076E65009E1A47 /* Build configuration list for PBXNativeTarget "MacDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E548618E16076E65009E1A47 /* Debug */,
+				E548618F16076E65009E1A47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		E5F0969815F647930054838B /* Build configuration list for PBXProject "DSFavIcon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

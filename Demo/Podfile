@@ -1,3 +1,5 @@
 platform :ios
 
 podspec :path => "../DSFavIconManager.podspec"
+
+pod 'AFNetworking'

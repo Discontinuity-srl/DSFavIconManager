@@ -7,17 +7,36 @@
 //
 
 #import "DSFavIconManager.h"
-#import "AFNetworking.h"
-#import "DSFavIconCache.h"
-#import "DSFavIconOperation.h"
+
+CGFloat screenScale();
+CGSize sizeInPixels(UINSImage *image);
+
+CGFloat screenScale() {
+    #if TARGET_OS_IPHONE
+        return [UIScreen mainScreen].scale;
+    #else
+        return [NSScreen mainScreen].backingScaleFactor;
+    #endif
+}
+
+CGSize sizeInPixels(UINSImage *icon) {
+    CGSize size = icon.size;
+    #if TARGET_OS_IPHONE
+    size.width *= icon.scale;
+    size.height *= icon.scale;
+    #endif
+    return size;
+}
+
+
 
 @implementation DSFavIconManager {
     NSOperationQueue *_operationQue;
     NSMutableDictionary *_operationsPerURL;
 }
+
 #pragma mark - Initialization
-+ (DSFavIconManager*)sharedInstance
-{
++ (DSFavIconManager*)sharedInstance {
     static dispatch_once_t once;
     static id sharedInstance;
     dispatch_once(&once, ^{
@@ -30,17 +49,18 @@
 {
     self = [super init];
     if (self) {
+        _cache = [DSFavIconCache sharedCache];
+
         _operationQue = [[NSOperationQueue alloc] init];
         _operationQue.maxConcurrentOperationCount = 4;
         _operationsPerURL = [NSMutableDictionary new];
 
-        _placehoder = [UIImage imageNamed:@"favicon"];
+        _placehoder = [UINSImage imageNamed:@"favicon"];
         _discardRequestsForIconsWithPendingOperation = false;
         _useAppleTouchIconForHighResolutionDisplays  = false;
     }
     return self;
 }
-
 
 
 #pragma mark - Public methods
@@ -50,24 +70,21 @@
     _operationsPerURL = [NSMutableDictionary new];
 }
 
-- (void)clearCache
-{
+- (void)clearCache {
     [self cancelRequests];
-    [[DSFavIconCache sharedCache] removeAllObjects];
+    [_cache removeAllObjects];
 }
 
 - (BOOL)hasOperationForURL:(NSURL*)url {
     return [_operationsPerURL objectForKey:url] != nil;
 }
 
-- (UIImage*)cachedIconForURL:(NSURL *)url
-{
-    return [[DSFavIconCache sharedCache] imageForKey:[self keyForURL:url]];
+- (UINSImage*)cachedIconForURL:(NSURL *)url {
+    return [_cache imageForKey:[self keyForURL:url]];
 }
 
-- (UIImage*)iconForURL:(NSURL *)url downloadHandler:(void (^)(UIImage *icon))downloadHandler {
-
-    UIImage *cachedImage = [self cachedIconForURL:url];
+- (UINSImage*)iconForURL:(NSURL *)url downloadHandler:(void (^)(UINSImage *icon))downloadHandler {
+    UINSImage *cachedImage = [self cachedIconForURL:url];
     if (cachedImage) {
         return cachedImage;
     }
@@ -75,10 +92,10 @@
     if (_discardRequestsForIconsWithPendingOperation && [_operationsPerURL objectForKey:url]) {
         return _placehoder;
     }
-        DSFavIconOperationCompletionBlock completionBlock = ^(UIImage *icon) {
+        DSFavIconOperationCompletionBlock completionBlock = ^(UINSImage *icon) {
             [_operationsPerURL removeObjectForKey:url];
             if (icon) {
-                [[DSFavIconCache sharedCache] setImage:icon forKey:[self keyForURL:url]];
+                [_cache setImage:icon forKey:[self keyForURL:url]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     downloadHandler(icon);
                 });
@@ -92,7 +109,7 @@
 
         // Prevent starting an operation for an icon that has been downloaded in the meanwhile.
         op.preFlightBlock = ^BOOL (NSURL *url) {
-            UIImage *icon = [self cachedIconForURL:url];
+            UINSImage *icon = [self cachedIconForURL:url];
             if (icon) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     downloadHandler(icon);
@@ -103,10 +120,9 @@
             }
         };
 
-        op.acceptanceBlock = ^BOOL (UIImage *icon) {
-            CGSize size = icon.size;
-            BOOL result = (size.width * icon.scale) >= 16 * [UIScreen mainScreen].scale && (size.height * icon.scale) >= 16 * [UIScreen mainScreen].scale;
-            return result;
+        op.acceptanceBlock = ^BOOL (UINSImage *icon) {
+            CGSize size = sizeInPixels(icon);
+            return size.width >= (16 * screenScale()) && size.height >= (16.f * screenScale());
         };
 
         [_operationsPerURL setObject:op forKey:url];
@@ -116,15 +132,14 @@
 }
 
 
-
-
 #pragma mark - Private methods
+
 - (NSString*)keyForURL:(NSURL *)url {
     return [url host];
 }
 
 - (NSArray*)defaultNames {
-    if (_useAppleTouchIconForHighResolutionDisplays && [UIScreen mainScreen].scale > 1.0) {
+  if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
         return @[ @"favicon.ico", @"apple-touch-icon-precomposed.png", @"apple-touch-icon.png", @"touch-icon-iphone.png" ];
     } else {
         return @[ @"favicon.ico" ];
@@ -133,7 +148,7 @@
 
 - (NSString *)acceptedRelationshipAttributesRegex {
     NSArray *array = @[ @"shortcut icon", @"icon" ];
-    if (_useAppleTouchIconForHighResolutionDisplays && [UIScreen mainScreen].scale > 1.0) {
+    if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
         array = @[ @"shortcut icon", @"icon", @"apple-touch-icon" ];
     } else {
         array = @[ @"shortcut icon", @"icon" ];

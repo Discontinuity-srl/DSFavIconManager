@@ -7,7 +7,9 @@
 //
 
 #import "DSFavIconOperation.h"
-#import "AFNetworkActivityIndicatorManager.h"
+
+NSString *const kDSFavIconOperationDidStartNetworkActivity = @"kDSFavIconOperationDidStartNetworkActivity";
+NSString *const kDSFavIconOperationDidEndNetworkActivity   = @"kDSFavIconOperationDidEndNetworkActivity";
 
 @implementation DSFavIconOperation
 
@@ -23,14 +25,13 @@
     return result;
 }
 
-- (BOOL)isIconValid:(UIImage*)icon {
+- (BOOL)isIconValid:(UINSImage*)icon {
     if (_acceptanceBlock) {
         return icon != nil && _acceptanceBlock(icon);
     } else {
         return icon != nil;
     }
 }
-
 
 - (void)main {
     if (self.isCancelled) return;
@@ -41,37 +42,40 @@
         }
     }
 
-    UIImage *icon = [self searchURLForImages:_url withNames:_defaultNames];
+    UINSImage *icon = [self searchURLForImages:_url withNames:_defaultNames];
 
     if (![self isIconValid:icon] && !self.isCancelled) {
         NSURLRequest *request = [NSURLRequest requestWithURL:_url];
         NSURLResponse *response;
-        [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDSFavIconOperationDidStartNetworkActivity object:self];
         NSData *htmlData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
-        [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDSFavIconOperationDidEndNetworkActivity object:self];
 
         if (![self isIconValid:icon] && !self.isCancelled) {
-            UIImage *newIcon = [self searchURLForImages:response.URL withNames:_defaultNames];
+            UINSImage *newIcon = [self searchURLForImages:response.URL withNames:_defaultNames];
             if (newIcon) icon = newIcon;
         }
         if (![self isIconValid:icon] && !self.isCancelled) {
-            UIImage *newIcon = [self iconFromHTML:htmlData textEncodingName:response.textEncodingName url:response.URL];
+            UINSImage *newIcon = [self iconFromHTML:htmlData textEncodingName:response.textEncodingName url:response.URL];
             if (newIcon) icon = newIcon;
         }
     }
     _completion(icon);
 }
 
-- (UIImage*)searchURLForImages:(NSURL *)url withNames:(NSArray *)names {
-    __block UIImage *icon;
+- (UINSImage*)searchURLForImages:(NSURL *)url withNames:(NSArray *)names {
+    __block UINSImage *icon;
     NSURL *baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", [url scheme], [url host]]];
     [names enumerateObjectsUsingBlock:^(NSString *iconName, NSUInteger idx, BOOL *stop) {
         if (!self.isCancelled) {
             NSURL *iconURL = [NSURL URLWithString:iconName relativeToURL:baseURL];
-            [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDSFavIconOperationDidStartNetworkActivity object:self];
             NSData *data = [NSData dataWithContentsOfURL:iconURL];
-            [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
-            UIImage *newIcon = [[UIImage alloc] initWithData:data];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDSFavIconOperationDidEndNetworkActivity object:self];
+
+            UINSImage *newIcon = [[UINSImage alloc] initWithData:data];
             if (newIcon) {
                 icon = newIcon;
                 *stop = [self isIconValid:icon];
@@ -83,7 +87,7 @@
     return icon;
 };
 
-- (UIImage*)iconFromHTML:(NSData*)htmlData textEncodingName:(NSString*)textEncodingName url:(NSURL*)url{
+- (UINSImage*)iconFromHTML:(NSData*)htmlData textEncodingName:(NSString*)textEncodingName url:(NSURL*)url{
     __block NSString *html;
     if (textEncodingName) {
         CFStringEncoding cfencoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)textEncodingName);
@@ -109,7 +113,7 @@
     NSString *link_pattern                = [NSString stringWithFormat:@"<link[^>]*%@[^>]*/?>", rel_pattern];
     NSRegularExpression *link_tag_regex   = [NSRegularExpression regularExpressionWithPattern:link_pattern options:NSRegularExpressionCaseInsensitive error:nil];
 
-    __block UIImage *icon;
+    __block UINSImage *icon;
     [link_tag_regex enumerateMatchesInString:html options:0 range:NSMakeRange(0, html.length) usingBlock:^(NSTextCheckingResult *link_tag_result, NSMatchingFlags flags, BOOL *stop) {
         if (!self.isCancelled) {
             NSString *link_tag                = [html substringWithRange:link_tag_result.range];
@@ -119,10 +123,12 @@
             NSString *href_value = [link_tag substringWithRange:[href_result rangeAtIndex:1]];
             if (href_value) {
                 NSURL* iconURL = [NSURL URLWithString:href_value relativeToURL:url];
-                [[AFNetworkActivityIndicatorManager sharedManager] incrementActivityCount];
+
+                [[NSNotificationCenter defaultCenter] postNotificationName:kDSFavIconOperationDidStartNetworkActivity object:self];
                 NSData *data = [NSData dataWithContentsOfURL:iconURL];
-                [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
-                UIImage *newIcon = [[UIImage alloc] initWithData:data];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kDSFavIconOperationDidEndNetworkActivity object:self];
+
+                UINSImage *newIcon = [[UINSImage alloc] initWithData:data];
                 if (newIcon) {
                     icon = newIcon;
                     *stop = [self isIconValid:icon];
