@@ -19,7 +19,7 @@
 + (DSFavIconManager *) sharedInstance;
 
 /** Placeholder image for favicons. Defaults to [UIImage imageNamed:@"favicon"]. */
-@property UINSImage *placehoder;
+@property UINSImage *placeholder;
 
 /** The DSFavIconCache instance used by the current manager. 
      Defaults to [DSFavIconCache sharedCache] */
