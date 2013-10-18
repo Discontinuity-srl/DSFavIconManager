@@ -102,7 +102,7 @@
     }
     else {
         textLabel.text  = [NSString stringWithFormat:@"%d. [%@]", indexPath.row + 1, [url absoluteString]];
-        imageView.image = [DSFavIconManager sharedInstance].placehoder;
+        imageView.image = [DSFavIconManager sharedInstance].placeholder;
     }
     return cell;
 }

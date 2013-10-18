@@ -55,7 +55,7 @@ CGSize sizeInPixels(UINSImage *icon) {
         _operationQue.maxConcurrentOperationCount = 4;
         _operationsPerURL = [NSMutableDictionary new];
 
-        _placehoder = [UINSImage imageNamed:@"favicon"];
+        _placeholder = [UINSImage imageNamed:@"favicon"];
         _discardRequestsForIconsWithPendingOperation = false;
         _useAppleTouchIconForHighResolutionDisplays  = false;
     }
@@ -90,7 +90,7 @@ CGSize sizeInPixels(UINSImage *icon) {
     }
 
     if (_discardRequestsForIconsWithPendingOperation && [_operationsPerURL objectForKey:url]) {
-        return _placehoder;
+        return _placeholder;
     }
         DSFavIconOperationCompletionBlock completionBlock = ^(UINSImage *icon) {
             [_operationsPerURL removeObjectForKey:url];
@@ -128,7 +128,7 @@ CGSize sizeInPixels(UINSImage *icon) {
         [_operationsPerURL setObject:op forKey:url];
         [_operationQue addOperation:op];
 
-    return self.placehoder;
+    return self.placeholder;
 }
 
 
