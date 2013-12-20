@@ -11,12 +11,12 @@
 
 #if TARGET_OS_IPHONE
   #import <UIKit/UIKit.h>
-  #define UINSImage   UIImage
-  #define UINSScreen  UIScreen
+typedef UIImage UINSImage;
+typedef UIScreen UINSScreen;
 #else
   #import <Cocoa/Cocoa.h>
-  #define UINSImage   NSImage
-  #define UINSScreen  NSScreen
+typedef NSImage UINSImage;
+typedef NSScreen UINSScreen;
 #endif
 
 #endif
