@@ -16,7 +16,7 @@ Installation
 
 Use [CocoaPods](https://github.com/CocoaPods/CocoaPods):
 
-    pod 'DSGraphicsKit'
+    pod 'DSFavIconManager'
 
 Usage
 -----
