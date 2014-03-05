@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name         = "DSFavIconManager"
-  s.version      = "0.10.0"
+  s.version      = "0.10.1"
   s.summary      = "DSFavIconManager is a complete solution for displaying favicons."
   s.homepage     = "https://github.com/Discontinuity-srl/DSFavIconManager"
   s.author       = { 'Fabio A. Pelosin' => 'fabio@discontinuity.it' }
-  s.source       = { :git => "https://github.com/Discontinuity-srl/DSFavIconManager.git", :tag => "0.10.0" }
+  s.source       = { :git => "https://github.com/Discontinuity-srl/DSFavIconManager.git", :tag => "0.10.1" }
   s.source_files = 'Classes'
   s.requires_arc = true
   s.license      = "MIT"

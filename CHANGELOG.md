@@ -1,3 +1,7 @@
+# 0.10.1
+
+- Style and & warnings.
+
 # 0.10.0
 
 - Support for OS X.
