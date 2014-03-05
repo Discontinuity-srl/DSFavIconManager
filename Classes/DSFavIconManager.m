@@ -138,7 +138,7 @@ CGSize sizeInPixels(UINSImage *icon) {
 }
 
 - (NSArray*)defaultNames {
-  if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
+    if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
         return @[ @"favicon.ico", @"apple-touch-icon-precomposed.png", @"apple-touch-icon.png", @"touch-icon-iphone.png" ];
     } else {
         return @[ @"favicon.ico" ];
