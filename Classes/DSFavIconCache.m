@@ -24,7 +24,7 @@ NSData *UINSImagePNGRepresentation(UINSImage *image) {
         NSUInteger width  = CGImageGetWidth(imageRef);
         NSUInteger height = CGImageGetHeight(imageRef);
         CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
-        CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, width * 4, colorSpace, kCGImageAlphaPremultipliedLast);
+        CGContextRef context = CGBitmapContextCreate(NULL, width, height, 8, width * 4, colorSpace, kCGBitmapByteOrderDefault);
         CGContextDrawImage(context, imageRect, imageRef);
         copyImageRef = CGBitmapContextCreateImage(context);
     }
