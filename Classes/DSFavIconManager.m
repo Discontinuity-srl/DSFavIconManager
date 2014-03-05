@@ -147,7 +147,7 @@ CGSize sizeInPixels(UINSImage *icon) {
 }
 
 - (NSString *)acceptedRelationshipAttributesRegex {
-    NSArray *array = @[ @"shortcut icon", @"icon" ];
+    NSArray *array;
     if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
         array = @[ @"shortcut icon", @"icon", @"apple-touch-icon" ];
     } else {
