@@ -16,7 +16,7 @@
 @interface DSFavIconManager : NSObject
 
 /** Returns the shared singleton. */
-+ (DSFavIconManager *) sharedInstance;
++ (DSFavIconManager *)sharedInstance;
 
 /** Placeholder image for favicons. Defaults to [UIImage imageNamed:@"favicon"]. */
 @property UINSImage *placeholder;
@@ -54,6 +54,6 @@
 - (void)cancelRequests;
 
 /** Clears the caches (memory and disk) and cancels pending queues. */
-- (void) clearCache;
+- (void)clearCache;
 
 @end

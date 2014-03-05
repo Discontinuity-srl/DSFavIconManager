@@ -45,8 +45,7 @@ CGSize sizeInPixels(UINSImage *icon) {
     return sharedInstance;
 }
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         _cache = [DSFavIconCache sharedCache];

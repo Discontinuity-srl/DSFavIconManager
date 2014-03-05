@@ -87,7 +87,7 @@ NSString *const kDSFavIconOperationDidEndNetworkActivity   = @"kDSFavIconOperati
     return icon;
 };
 
-- (UINSImage*)iconFromHTML:(NSData*)htmlData textEncodingName:(NSString*)textEncodingName url:(NSURL*)url{
+- (UINSImage*)iconFromHTML:(NSData*)htmlData textEncodingName:(NSString*)textEncodingName url:(NSURL*)url {
     __block NSString *html;
     if (textEncodingName) {
         CFStringEncoding cfencoding = CFStringConvertIANACharSetNameToEncoding((__bridge CFStringRef)textEncodingName);
