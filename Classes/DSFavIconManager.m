@@ -45,8 +45,7 @@ CGSize sizeInPixels(UINSImage *icon) {
     return sharedInstance;
 }
 
-- (id)init
-{
+- (id)init {
     self = [super init];
     if (self) {
         _cache = [DSFavIconCache sharedCache];
@@ -139,7 +138,7 @@ CGSize sizeInPixels(UINSImage *icon) {
 }
 
 - (NSArray*)defaultNames {
-  if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
+    if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
         return @[ @"favicon.ico", @"apple-touch-icon-precomposed.png", @"apple-touch-icon.png", @"touch-icon-iphone.png" ];
     } else {
         return @[ @"favicon.ico" ];
@@ -147,7 +146,7 @@ CGSize sizeInPixels(UINSImage *icon) {
 }
 
 - (NSString *)acceptedRelationshipAttributesRegex {
-    NSArray *array = @[ @"shortcut icon", @"icon" ];
+    NSArray *array;
     if (_useAppleTouchIconForHighResolutionDisplays && screenScale() > 1.f) {
         array = @[ @"shortcut icon", @"icon", @"apple-touch-icon" ];
     } else {
