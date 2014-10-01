@@ -102,7 +102,7 @@ NSData *UINSImagePNGRepresentation(UINSImage *image) {
     dispatch_async(_queue, ^{
         NSString *path = [self pathForImage:image key:key];
         NSLog(@"%@", path);
-        NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject: image]; //UINSImagePNGRepresentation(image);
+        NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject: image];
         if (imageData) {
             [imageData writeToFile:path atomically:NO];
         }
