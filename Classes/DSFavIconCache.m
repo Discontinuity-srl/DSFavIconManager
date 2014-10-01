@@ -83,7 +83,8 @@ NSData *UINSImagePNGRepresentation(UINSImage *image) {
     
     if (!image) {
         NSString *path = [self pathForImage:image key:key];
-        image = [[UINSImage alloc] initWithContentsOfFile:path];
+        NSData *imageData = [[NSData alloc] initWithContentsOfFile:path];
+        image = imageData.length ? [NSKeyedUnarchiver unarchiveObjectWithData: imageData] : nil;
         if (image) {
             [self setObject:image forKey:key];
         }
@@ -101,7 +102,7 @@ NSData *UINSImagePNGRepresentation(UINSImage *image) {
     dispatch_async(_queue, ^{
         NSString *path = [self pathForImage:image key:key];
         NSLog(@"%@", path);
-        NSData *imageData = UINSImagePNGRepresentation(image);
+        NSData *imageData = [NSKeyedArchiver archivedDataWithRootObject: image];
         if (imageData) {
             [imageData writeToFile:path atomically:NO];
         }
